@@ -10,35 +10,28 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-public class SwaggerConfig {
+
     @Configuration
     @EnableSwagger2
-    public class SwaggerConfiguration {
+    public class SwaggerConfig {
+
         @Bean
-        public Docket api() {
+        public Docket restAPI() {
             return new Docket(DocumentationType.SWAGGER_2)
+                    .apiInfo(apiInfo())
                     .select()
-//                .apis(RequestHandlerSelectors.any())
-                    .apis(RequestHandlerSelectors.basePackage("com.example"))
-                    // 스웨거가 RestController를 전부 스캔을 한다.
-                    // basePackage => 어디를 범위로 스캔을 할 것인지 작성
-                    .paths(PathSelectors.any())
+                    .apis(RequestHandlerSelectors.basePackage("com.example.price.controller")) // 특정 패키지경로를 API문서화 한다.
+                    .paths(PathSelectors.any()) // apis중에서 특정 path조건 API만 문서화 하는 2차 필터
                     .build()
-                    .apiInfo(apiInfo());
+                    .groupName("API 1.0.0") // group별 명칭을 주어야 한다.
+                    .useDefaultResponseMessages(false); // 400,404,500 .. 표기를 ui에서 삭제한다.
         }
 
         private ApiInfo apiInfo() {
-
             return new ApiInfoBuilder()
-                    .title("결제 API 서비스")
-                    .description("결제 API 서비스 입니다")
-                    .version("0.8.0")
-                    .termsOfServiceUrl("https://antstudy.tistory.com/")
-                    .license("LICENSE")
-                    .licenseUrl("")
+                    .title("Spring Boot REST API test")
+                    .version("v0.0.1")
+                    .description("스크랩 JPA swagger api 입니다.")
                     .build();
         }
-
-        // 완료가 되었으면 오른쪽 URL 로 접속 => http://localhost:8080/swagger-ui.html
     }
-}

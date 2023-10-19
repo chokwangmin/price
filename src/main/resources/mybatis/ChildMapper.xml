@@ -7,4 +7,25 @@
         WHERE user_no = #{parentNo}
         limit 1
     </select>
+
+    <insert id="insertChild" parameterType="com.example.price.domain.Child">
+        INSERT INTO child ( user_no
+        , name
+        , birth
+        , gender
+        , created_dt
+        , created_by
+        , update_dt
+        , update_by
+        ) values (
+        #{user_no}
+        , #{name}
+        , #{birth}
+        , #{gender}
+        , #{created_dt}
+        , #{created_by}
+        , #{update_dt}
+        , #{update_by}
+        )
+    </insert>
 </mapper>

@@ -1,5 +1,5 @@
 server:
-        port: 8088
+        port: 18088
 
 spring:
         datasource:
@@ -17,6 +17,9 @@ spring:
                                 enabled: true
                         thymeleaf:
                                 cache: false
+        mvc:
+                pathmatch:
+                        matching-strategy: "ant_path_matcher"
 
 
 mybatis:

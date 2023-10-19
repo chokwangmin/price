@@ -6,8 +6,7 @@ import java.util.List;
 
 
 public interface ChildService {
-   // void ChildSelect(Child child);
 
-    List<Child> ChildList(int parentNo);
-    //List<Child> ChildList (String pretnNo);
+    void ChildCreate (Child child);
+    List<Child> ChildInfo (int parentNo);
 }
